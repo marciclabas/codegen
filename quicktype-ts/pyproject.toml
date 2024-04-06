@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quicktype-ts"
+version = "0.1.1"
+authors = [
+  {name="Marcel Claramunt", email="marcel@moveread.com"}
+]
+description = "Generate typescript types from pydantic models (or JSON schemas) using Quicktype"
+dependencies = [
+  "pydantic"
+]
+requires-python = ">=3.10"
+readme = {file="README.md", content-type="text/markdown"}
+
+[project.urls]
+repo = "https://github.com/moveread/codegen.git"
+
+# [project.optional-dependencies]
+# test = [
+#   "pytest < 5.0.0",
+#   "pytest-cov[all]"
+# ]

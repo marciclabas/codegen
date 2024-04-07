@@ -7,13 +7,11 @@
 Instead of:
 >>> Int[np.ndarray, 'B 256 64 3']
 do:
->>> PyArray[Int, 'B 256 64 3']
+>>> PyArray[Int, int, 'B 256 64 3']
 
 You can use it with `jaxtyping` as normal, but also it will:
 - Serialize to nested lists
 - Validate the correct shape and datatypes from serialized lists
-
-**Important: Make sure to use `model_config = ConfigDict(arbitrary_types_allowed=True)`**
 
 ### Example
 ```
@@ -23,8 +21,7 @@ from jaxtyping import Int
 import numpy as np
 
 class Sample(BaseModel):
-  model_config = ConfigDict(arbitrary_types_allowed=True)
-  img: PyArray[Int, "W H 3"]
+  img: PyArray[Int, int, "W H 3"]
   label: str
 
 Sample.model_validate({
@@ -41,4 +38,5 @@ Sample.model_validate({
 # fails: invalid dims :/
 ```
 """
-from .main import PyArray, array_schema, json_schema, core_schema
+from .main import PyArray
+from .schemas import array_schema, json_schema, core_schema

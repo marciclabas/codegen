@@ -10,8 +10,6 @@ You can use it with `jaxtyping` as normal, but also it will:
 - Serialize to nested lists
 - Validate the correct shape and datatypes from serialized lists
 
-**With `pydantic`, make sure to use `model_config = ConfigDict(arbitrary_types_allowed=True)`**
-
 ### Example
 ```
 from pydantic import BaseModel, ConfigDict

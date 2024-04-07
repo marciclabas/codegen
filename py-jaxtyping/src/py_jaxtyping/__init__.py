@@ -13,14 +13,17 @@ You can use it with `jaxtyping` as normal, but also it will:
 - Serialize to nested lists
 - Validate the correct shape and datatypes from serialized lists
 
+**Important: Make sure to use `model_config = ConfigDict(arbitrary_types_allowed=True)`**
+
 ### Example
 ```
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from py_jaxtyping import PyArray
 from jaxtyping import Int
 import numpy as np
 
 class Sample(BaseModel):
+  model_config = ConfigDict(arbitrary_types_allowed=True)
   img: PyArray[Int, "W H 3"]
   label: str
 

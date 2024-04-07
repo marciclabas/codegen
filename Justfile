@@ -1,5 +1,6 @@
 mod quicktype-ts
 mod openapi-ts
+mod py-jaxtyping
 
 VENV := ".venv"
 PYTHON := ".venv/bin/python"

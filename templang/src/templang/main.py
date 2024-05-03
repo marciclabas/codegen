@@ -3,13 +3,21 @@ from typing import Sequence, Literal, TypeAlias, Mapping
 Context = Literal['template', 'loop']
 Stack: TypeAlias = list[Context]
 
-def drop_while(p, xs):
-  for i, x in enumerate(xs):
-    if not p(x):
-      return xs[i:]
+def skip_loop(lines: list[str], prefix: str = '#'):
+  """
+  Skip a loop in the source code
+  """
+  count = 1
+  for i, line in enumerate(lines):
+    if line.strip().startswith(f'{prefix} LOOP'):
+      count += 1
+    if line.strip().startswith(f'{prefix} END'):
+      count -= 1
+    if count == 0:
+      return lines[i+1:]
   return []
 
-def parse(source_code: str, translations: Mapping[str, str | Sequence[str]], prefix: str = '#') -> str:
+def parse(source_code: str, translations: Mapping[str, str | Sequence], prefix: str = '#') -> str:
   """
   - `source_code`: source code to process
   - `translations`: stuff to replace in the source code
@@ -55,11 +63,11 @@ def parse(source_code: str, translations: Mapping[str, str | Sequence[str]], pre
       loop_lines = []
       for i in range(max(len(values[var]) for var in variables)):
         nested_translations = translations | { var: values[var][i] for var in variables }
-        lines, _ = _parse(rest, [*stack, 'loop'], nested_translations)
-        loop_lines.extend(lines)
+        new_lines, _ = _parse(rest, [*stack, 'loop'], nested_translations)
+        loop_lines.extend(new_lines)
 
-      skip_loop = drop_while(lambda x: not x.strip().startswith(f'{prefix} END'), rest)[1:]
-      next_lines, next_stack = _parse(skip_loop, stack, translations)
+      lines_after = skip_loop(rest, prefix)
+      next_lines, next_stack = _parse(lines_after, stack, translations)
       return [*loop_lines, *next_lines], next_stack
     
     output = line.strip('\n')

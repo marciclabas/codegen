@@ -73,5 +73,41 @@ Now, that's most of what you need to now. But, to be precise, here are the rules
   - `LEN = len(translations[VAR1]) == ... == len(translations[VARN])`
   - The template inside the loop is substituted with `translations[VARi][j]` for each `j in range(LEN)`	
   - Nested loops are allowed
+  - If nested loops involve a same variable `VAR` multiple times, then `translations[VAR]` must be a nested sequence of strings (matching the loop depth)
+    - E.g:
+    
+      ```python
+      # BEGIN
+      from typing import Union, Literal
+
+      Marriage = Union[
+      # LOOP NAMES
+        tuple [
+        # LOOP NAMES
+          Literal['NAMES'],
+        # END
+        ],
+      # END
+      ]
+      # END
+
+
+      parse(open(__file__).read(), {
+        'NAMES': [['John', 'Jane'], ['Stuart', 'Alice']]
+      })
+
+      # from typing import Union, Literal
+      #
+      # Marriage = Union[
+      #   tuple [
+      #     Literal['John'],
+      #     Literal['Jane'],
+      #   ],
+      #   tuple [
+      #     Literal['Stuart'],
+      #     Literal['Alice'],
+      #   ],
+      # ]
+      ```
 
 - Oh, and actually, `#` can be replaced by any custom string (e.g. `//`)

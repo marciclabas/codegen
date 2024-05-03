@@ -1,7 +1,8 @@
-# Codegen Python to Typescript
+# Codegen
 
-> Code Generation tools from python to typescript
+> Code Generation tools
 
 
-- [`quicktype-ts`](quicktype-ts/README.md): pydantic (or JSON schema) to typescript
-- [`openapi-ts`](openapi-ts/README.md): typescript clients from OpenAPI-schema-complient APIs (e.g. `fastapi`)
+- [`templang`](templang): a simple annotation-based language to generate code from templates (in any language)
+- [`quicktype-ts`](quicktype-ts): pydantic (or JSON schema) to typescript
+- [`openapi-ts`](openapi-ts): typescript clients from OpenAPI-schema-complient APIs (e.g. `fastapi`)

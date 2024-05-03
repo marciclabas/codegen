@@ -22,8 +22,6 @@ class RANK:
   clearance_level: CLEARANCE_LEVEL
 
 # END
-
-
 # END
 ```
 

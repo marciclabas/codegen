@@ -13,7 +13,7 @@ from typing import Literal
 Rank = Literal[
   # LOOP RANK
   'RANK',
-  #END
+  # END
 ]
 
 CLEARANCE_LEVEL = int # DELETE (just to make mypy happy)

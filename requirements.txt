@@ -2,3 +2,5 @@ build
 twine
 ipykernel
 -e templang
+-e openapi-ts
+-e quicktype-ts

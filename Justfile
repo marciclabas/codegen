@@ -2,6 +2,7 @@ mod quicktype-ts
 mod openapi-ts
 mod py-jaxtyping
 mod templang
+mod verify-import
 
 VENV := ".venv"
 PYTHON := ".venv/bin/python"

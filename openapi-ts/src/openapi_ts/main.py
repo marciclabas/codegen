@@ -7,7 +7,6 @@ def generate_client(
   openapi_schema: dict, output_path: str, *,
   args: Mapping[str, str] = {
     '--client': '@hey-api/client-fetch',
-    '--services': '{ asClass: false }'
   },
   logstream: TextIO | None = None
 ):
@@ -21,7 +20,7 @@ def generate_client(
     json.dump(openapi_schema, f)
 
   str_args = ' '.join(f'{k} {v}' for k, v in args.items())
-  cmd = f'npx @hey-api/openapi-ts -i {file} -o {output_path} {str_args}'
+  cmd = f'npx @hey-api/openapi-ts@latest -i {file} -o {output_path} {str_args}'
   if logstream:
     print(f'Running: {cmd}', file=logstream)
   os.system(cmd)

@@ -1,4 +1,4 @@
-from typing import Annotated, Any, Unpack, Literal, TypedDict, TypeVar
+from typing_extensions import Annotated, Any, Unpack, Literal, TypedDict, TypeVar
 from pydantic_core import CoreSchema
 
 class SchemaKeys(TypedDict):
